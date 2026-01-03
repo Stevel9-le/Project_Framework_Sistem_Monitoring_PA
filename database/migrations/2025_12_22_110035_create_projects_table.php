@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('progress_logs', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+$table->foreignId('category_id')->constrained()->onDelete('cascade');
+$table->enum('status', ['pending', 'on_progress', 'done']);
+
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('progress_logs');
+        Schema::dropIfExists('projects');
     }
 };
