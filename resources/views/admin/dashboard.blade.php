@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Dashboard - Sistem Monitoring</title>
 
-    <!-- CSS Links -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets-admin/css/bootstrap.css')}}">
@@ -18,47 +17,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light">
-    <div class="container-fluid d-flex justify-content-end">
-        <div class="dropdown">
-            <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="avatar avatar-md">
-                    <img src="{{ asset('assets/images/faces/1.jpg') }}">
-                </div>
-            </a>
-
-            <ul class="dropdown-menu dropdown-menu-end">
-                @guest
-                    <li>
-                        <a class="dropdown-item" href="{{ route('login') }}">
-                            <i class="bi bi-box-arrow-in-right me-2"></i> Login
-                        </a>
-                    </li>
-                @endguest
-
-                @auth
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="bi bi-person me-2"></i> Edit Profile
-                        </a>
-                    </li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button class="dropdown-item text-danger">
-                                <i class="bi bi-box-arrow-right me-2"></i> Logout
-                            </button>
-                        </form>
-                    </li>
-                @endauth
-            </ul>
-        </div>
-    </div>
-</nav>
-
     <div id="app">
-        <!-- Include Sidebar dengan Laravel -->
         @include('admin.layouts.sidebar')
 
         <div id="main">
@@ -69,135 +28,109 @@
             </header>
 
             <div class="page-heading">
-                <h3>Profile Statistics</h3>
+                <h3>Dashboard Statistik</h3>
             </div>
+            
             <div class="page-content">
                 <section class="row">
                     <div class="col-12 col-lg-9">
                         <div class="row">
-                            <!-- Card Statistik Dasar (dipertahankan) -->
                             <div class="col-6 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-3 py-4-5">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="stats-icon purple">
-                                                    <i class="iconly-boldShow"></i>
+                                                    <i class="bi bi-briefcase-fill"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Profile Views</h6>
-                                                <h6 class="font-extrabold mb-0">112.000</h6>
+                                                <h6 class="text-muted font-semibold">Total Project</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $totalProjects ?? 0 }}</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-6 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-3 py-4-5">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="stats-icon blue">
-                                                    <i class="iconly-boldProfile"></i>
+                                                    <i class="bi bi-hourglass-split"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Followers</h6>
-                                                <h6 class="font-extrabold mb-0">183.000</h6>
+                                                <h6 class="text-muted font-semibold">Sedang Berjalan</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $ongoingProjects ?? 0 }}</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-6 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-3 py-4-5">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="stats-icon green">
-                                                    <i class="iconly-boldAdd-User"></i>
+                                                    <i class="bi bi-check-circle-fill"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Following</h6>
-                                                <h6 class="font-extrabold mb-0">80.000</h6>
+                                                <h6 class="text-muted font-semibold">Selesai</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $doneProjects ?? 0 }}</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-6 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-3 py-4-5">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="stats-icon red">
-                                                    <i class="iconly-boldBookmark"></i>
+                                                    <i class="bi bi-people-fill"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Saved Post</h6>
-                                                <h6 class="font-extrabold mb-0">112</h6>
+                                                <h6 class="text-muted font-semibold">Total Staff</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $totalStaff ?? 0 }}</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Tabel Komentar Sederhana (dipertahankan tapi disederhanakan) -->
+
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Latest Comments</h4>
+                                        <h4>Selamat Datang, {{ auth()->user()->name }}!</h4>
                                     </div>
                                     <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover table-lg">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Comment</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="col-3">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                    <img src="{{asset('assets-admin/images/faces/5.jpg')}}">
-                                                                </div>
-                                                                <p class="font-bold ms-3 mb-0">Si Cantik</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                            <p class="mb-0">Congratulations on your graduation!</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="col-3">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                    <img src="{{asset('assets-admin/images/faces/2.jpg')}}">
-                                                                </div>
-                                                                <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                            <p class="mb-0">Wow amazing design!</p>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        <p>Anda login sebagai <strong>{{ ucfirst(auth()->user()->getRoleNames()->first()) }}</strong>.</p>
+                                        <p>Gunakan menu di samping untuk mengelola data project.</p>
+                                        @role('admin')
+                                            <a href="{{ route('admin.project.create') }}" class="btn btn-primary">Buat Project Baru</a>
+                                        @endrole
+                                        @role('staff')
+                                            <a href="{{ route('admin.project.index') }}" class="btn btn-primary">Lihat Project Saya</a>
+                                        @endrole
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+                    
                     <div class="col-12 col-lg-3">
-                        <!-- Card Profil (dipertahankan) -->
                         <div class="card">
                             <div class="card-body py-4 px-5">
                                 <div class="d-flex align-items-center">
@@ -205,51 +138,21 @@
                                         <img src="{{asset('assets-admin/images/faces/1.jpg')}}" alt="Face 1">
                                     </div>
                                     <div class="ms-3 name">
-                                        <h5 class="font-bold">John Duck</h5>
-                                        <h6 class="text-muted mb-0">@johnducky</h6>
+                                        <h5 class="font-bold">{{ auth()->user()->name }}</h5>
+                                        <h6 class="text-muted mb-0">{{ auth()->user()->email }}</h6>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Recent Messages (dipertahankan tapi disederhanakan) -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Recent Messages</h4>
-                            </div>
-                            <div class="card-content pb-4">
-                                <div class="recent-message d-flex px-4 py-3">
-                                    <div class="avatar avatar-lg">
-                                        <img src="{{asset('assets-admin/images/faces/4.jpg')}}">
-                                    </div>
-                                    <div class="name ms-4">
-                                        <h5 class="mb-1">Hank Schrader</h5>
-                                        <h6 class="text-muted mb-0">@johnducky</h6>
-                                    </div>
-                                </div>
-                                <div class="recent-message d-flex px-4 py-3">
-                                    <div class="avatar avatar-lg">
-                                        <img src="{{asset('assets-admin/images/faces/5.jpg')}}">
-                                    </div>
-                                    <div class="name ms-4">
-                                        <h5 class="mb-1">Dean Winchester</h5>
-                                        <h6 class="text-muted mb-0">@imdean</h6>
-                                    </div>
-                                </div>
-                                <div class="px-4">
-                                    <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start Conversation</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </section>
             </div>
 
-            <!-- Include Footer dengan Laravel -->
             @include('admin.layouts.footer')
         </div>
     </div>
 
-    <!-- JS Scripts -->
     <script src="{{asset('assets-admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('assets-admin/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets-admin/js/main.js')}}"></script>

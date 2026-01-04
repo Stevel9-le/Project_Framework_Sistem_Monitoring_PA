@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('progress_logs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
+            $table->text('description');
+            $table->enum('status', ['ongoing','review','done']);
+            $table->date('progress_date');
             $table->timestamps();
-            $table->foreignId('project_id')->constrained()->onDelete('cascade');
-$table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-$table->text('description');
-$table->date('progress_date');
+});
 
-        });
     }
 
     /**

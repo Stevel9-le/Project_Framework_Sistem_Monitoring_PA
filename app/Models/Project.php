@@ -2,24 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'name',
         'category_id',
         'user_id',
-        'description',
-        'status'
+        'title',
+        'abstract',
+        'status',
+        'start_date',
+        'end_date'
     ];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Categories::class);
     }
 
     public function user()
@@ -27,8 +26,23 @@ class Project extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function progressLogs()
+    public function progress_Logs()
     {
-        return $this->hasMany(ProgressLog::class);
+        return $this->hasMany(Progress_Log::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function sidang_Schedules()
+    {
+        return $this->hasMany(Sidang_Schedule::class);
+    }
+
+    public function assessments()
+    {
+        return $this->hasMany(Assessment::class);
     }
 }
