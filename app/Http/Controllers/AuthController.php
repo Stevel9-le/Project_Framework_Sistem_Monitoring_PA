@@ -24,12 +24,12 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             // Cek Role User yang sedang login
-            if (Auth()->user()->hasRole('admin')) {
-                return redirect()->intended('/admin/dashboard'); // Arahkan Admin
+            if (auth()->user()->hasAnyRole(['admin','staff'])) {
+                return redirect()->route('dashboard');
             }
 
-            // Jika bukan admin
-            return redirect()->intended('/dashboard'); // Arahkan User Biasa
+            return redirect()->route('dashboard'); // guest (kalau suatu saat auto-login)
+
         }
 
         // Jika Login Gagal

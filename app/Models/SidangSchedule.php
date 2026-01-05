@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sidang_Schedule extends Model
+class SidangSchedule extends Model
 {
     protected $fillable = [
         'project_id',

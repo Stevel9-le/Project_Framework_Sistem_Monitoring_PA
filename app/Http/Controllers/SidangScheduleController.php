@@ -14,12 +14,12 @@ class SidangScheduleController extends Controller
         $schedules = SidangSchedule::with('project')
             ->latest()->paginate(10);
 
-        return view('admin.sidang_schedules.index', compact('schedules'));
+        return view('admin.sidangschedules.index', compact('schedules'));
     }
 
     public function create()
     {
-        return view('admin.sidang_schedules.create', [
+        return view('admin.sidangschedules.create', [
             'projects' => Project::all()
         ]);
     }
@@ -40,7 +40,7 @@ class SidangScheduleController extends Controller
 
     public function edit(SidangSchedule $sidangSchedule)
     {
-        return view('admin.sidang_schedules.edit', compact('sidangSchedule'));
+        return view('admin.sidangschedules.edit', compact('sidangSchedule'));
     }
 
     public function update(Request $request, SidangSchedule $sidangSchedule)

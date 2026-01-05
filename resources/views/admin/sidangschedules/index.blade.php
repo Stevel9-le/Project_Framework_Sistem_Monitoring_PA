@@ -1,8 +1,8 @@
-@extends('layouts.admin')
+@extends('admin.layouts.app')
 
 @section('content')
 <h4>Jadwal Sidang</h4>
-<a href="{{ route('sidang-schedules.create') }}" class="btn btn-primary mb-3">Tambah Jadwal</a>
+<a href="{{ route('admin.sidang-schedules.create') }}" class="btn btn-primary mb-3">Tambah Jadwal</a>
 
 <table class="table table-bordered">
     <tr>

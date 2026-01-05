@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 class DashboardController extends Controller
 {
-    public function public()
+    public function index()
     {
-        return view('admin.dashboard', [
-            'mode' => 'guest'
-        ]);
-    }
+        // GUEST (belum login)
+        if (!Auth::check()) {
+            return view('guest.dashboard');
+        }
 
-    public function admin()
-    {
-        return view('admin.dashboard', [
-            'mode' => 'admin'
-        ]);
+        // ADMIN
+        if (auth()->user()->hasRole('admin')) {
+            return view('admin.dashboard');
+        }
+
+        // STAFF
+        if (auth()->user()->hasRole('staff')) {
+            return view('admin.dashboard');
+        }
+
+        abort(403);
     }
 }

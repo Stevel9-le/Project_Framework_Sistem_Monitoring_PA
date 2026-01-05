@@ -4,7 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class categories extends Model
+class Categories extends Model
 {
-    //
+    protected $table = 'categories';
+
+    protected $fillable = [
+        'name',
+        'description'
+    ];
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'category_id');
+    }
 }

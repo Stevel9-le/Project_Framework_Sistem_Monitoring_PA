@@ -1,8 +1,8 @@
-@extends('layouts.admin')
+@extends('admin.layouts.app')
 
 @section('content')
 <h4>Penilaian PA</h4>
-<a href="{{ route('assessments.create') }}" class="btn btn-primary mb-3">Tambah Nilai</a>
+<a href="{{ route('admin.assessments.create') }}" class="btn btn-primary mb-3">Tambah Nilai</a>
 
 <table class="table table-striped">
 <tr>

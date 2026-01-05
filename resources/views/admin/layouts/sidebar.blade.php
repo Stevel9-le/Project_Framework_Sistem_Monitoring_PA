@@ -85,18 +85,28 @@
 
                 <li class="sidebar-title">Akun</li>
 
-                <li class="sidebar-item">
-                    <a href="#"
-                       class="sidebar-link text-danger"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Logout</span>
-                    </a>
+                    {{-- PROFILE --}}
+                    <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                        <a href="{{ route('profile.edit') }}" class="sidebar-link">
+                            <i class="bi bi-person-circle"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </li>
+                    {{-- LOGOUT --}}
+                    <li class="sidebar-item">
+                        <a href="#"
+                        class="sidebar-link text-danger"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+
 
             </ul>
         </div>

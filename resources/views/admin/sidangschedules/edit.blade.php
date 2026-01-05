@@ -1,9 +1,9 @@
-@extends('layouts.admin')
+@extends('admin.layouts.app')
 
 @section('content')
 <h4>Edit Jadwal Sidang</h4>
 
-<form method="POST" action="{{ route('sidang-schedules.update',$sidangSchedule->id) }}">
+<form method="POST" action="{{ route('admin.sidang-schedules.update',$sidangSchedule->id) }}">
 @csrf @method('PUT')
 
 <input type="datetime-local" name="scheduled_at"

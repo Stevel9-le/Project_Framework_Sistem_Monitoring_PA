@@ -1,9 +1,9 @@
-@extends('layouts.admin')
+@extends('admin.layouts.app')
 
 @section('content')
 <h4>Tambah Jadwal Sidang</h4>
 
-<form method="POST" action="{{ route('sidang-schedules.store') }}">
+<form method="POST" action="{{ route('admin.sidang-schedules.store') }}">
 @csrf
 <select name="project_id" class="form-control mb-2">
     @foreach($projects as $project)

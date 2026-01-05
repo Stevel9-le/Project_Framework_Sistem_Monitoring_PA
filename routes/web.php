@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PublicController;
-
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\SidangScheduleController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\ProgressLogController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +19,8 @@ use App\Http\Controllers\CategoryController;
 |--------------------------------------------------------------------------
 */
 Route::get('/', [PublicController::class, 'index'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +49,7 @@ Route::middleware(['auth'])
     ->group(function () {
 
     // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'admin'])
+    Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
     // Project (CRUD)
@@ -64,6 +66,12 @@ Route::middleware(['auth'])
     Route::get('/assessments', [AssessmentController::class, 'index'])
         ->name('assessments.index');
 
+    Route::get('/assessments/create', [AssessmentController::class, 'create'])
+        ->name('assessments.create');
+
+    Route::post('/assessments', [AssessmentController::class, 'store'])
+        ->name('assessments.store');
+
     // Progress Log (INDEX SAJA)
     Route::get('/progress-logs', [ProgressLogController::class, 'index'])
         ->name('progress-logs.index');
@@ -71,6 +79,11 @@ Route::middleware(['auth'])
     // KHUSUS ADMIN
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('users', UserController::class);
-        Route::resource('categories', CategoryController::class);
+        Route::resource('categories', CategoriesController::class)
+        ->except(['create','edit','show']);
     });
+});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });

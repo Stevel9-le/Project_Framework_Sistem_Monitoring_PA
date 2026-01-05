@@ -1,9 +1,9 @@
-@extends('layouts.admin')
+@extends('admin.layouts.app')
 
 @section('content')
 <h4>Tambah Penilaian</h4>
 
-<form method="POST" action="{{ route('assessments.store') }}">
+<form method="POST" action="{{ route('admin.assessments.store') }}">
 @csrf
 
 <select name="project_id" class="form-control mb-2">

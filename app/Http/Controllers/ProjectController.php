@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use App\Models\Category;
+use App\Models\Categories;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage; // Wajib import ini
@@ -28,7 +28,7 @@ class ProjectController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = Categories::all();
         // Ambil user yang role-nya staff untuk assign project
         // Asumsi kamu menggunakan Spatie, cara ambil usernya:
         $users = User::role('staff')->get(); 

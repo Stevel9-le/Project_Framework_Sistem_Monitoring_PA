@@ -16,12 +16,12 @@ class ProgressLogController extends Controller
             ->where('user_id', Auth::id())
             ->latest()->paginate(6);
 
-        return view('staff.progress_logs.index', compact('logs'));
+        return view('admin.progress_logs.index', compact('logs'));
     }
 
     public function create()
     {
-        return view('staff.progress_logs.create', [
+        return view('admin.progress_logs.create', [
             'projects' => Project::all()
         ]);
     }
