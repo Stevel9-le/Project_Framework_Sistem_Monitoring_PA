@@ -3,15 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Project;
 
 class Categories extends Model
 {
     protected $table = 'categories';
 
-    protected $fillable = [
-        'name',
-        'description'
-    ];
+    protected $fillable = ['name'];
 
     public function projects()
     {

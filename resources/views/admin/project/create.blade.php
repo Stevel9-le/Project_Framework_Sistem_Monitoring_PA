@@ -36,9 +36,11 @@
         <div class="mb-3">
             <label>Status</label>
             <select name="status" class="form-control">
-                <option value="ongoing">Ongoing</option>
-                <option value="done">Done</option>
-            </select>
+            <option value="pending">Pending</option>
+            <option value="on_progress">Sedang Berjalan</option>
+            <option value="done">Selesai</option>
+        </select>
+
         </div>
 
         <button class="btn btn-success">Simpan</button>

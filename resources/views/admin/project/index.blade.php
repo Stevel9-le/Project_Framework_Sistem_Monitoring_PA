@@ -27,7 +27,7 @@
                     @foreach ($projects as $project)
                     <tr>
                         <td>{{ $project->name }}</td>
-                        <td>{{ $project->category->name }}</td>
+                        <td>{{ $project->categories?->name ?? '-' }}</td>
                         <td>{{ $project->user->name }}</td>
                         <td>
                             <span class="badge bg-success">

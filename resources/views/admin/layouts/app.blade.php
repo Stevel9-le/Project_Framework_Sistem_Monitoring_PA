@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title','Dashboard')</title>
+    <title>@yield('title', 'Sistem Monitoring PA')</title>
 
     <link rel="stylesheet" href="{{ asset('assets-admin/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets-admin/vendors/iconly/bold.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets-admin/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets-admin/vendors/bootstrap-icons/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-admin/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets-admin/css/app.css') }}">
 </head>
 
@@ -19,6 +18,7 @@
 
     {{-- MAIN --}}
     <div id="main">
+
         @include('admin.layouts.header')
 
         <div class="page-content">
@@ -26,8 +26,8 @@
         </div>
 
         @include('admin.layouts.footer')
-    </div>
 
+    </div>
 </div>
 
 <script src="{{ asset('assets-admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>

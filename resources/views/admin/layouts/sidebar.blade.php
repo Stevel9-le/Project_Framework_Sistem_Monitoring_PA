@@ -5,10 +5,11 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="{{ route('admin.dashboard') }}">
-                        <img src="{{ asset('assets-admin/images/logo/logo.png') }}" alt="Logo">
+                    <a href="{{ route('admin.dashboard') }}" class="fw-bold fs-4 text-primary">
+                        Monitoring PA
                     </a>
                 </div>
+
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block">
                         <i class="bi bi-x bi-middle"></i>
